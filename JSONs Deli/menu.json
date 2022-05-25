@@ -1,0 +1,76 @@
+{
+    "menu": [
+        {
+            "Appetizers":[
+                { 
+                    "Name":"Mozzerella Sticks",
+                    "Ingredients": ["breading", "mozzerella", "oil", "marinara sauce"],
+                    "Description": "Breaded Mozzerella deep fried in oil and served with marinara sauce"
+                },
+                {
+                    "Name": "Nachos",
+                    "Ingredients":["tortilla chips", "cheese","sour cream", "beef", "guacomole"],
+                    "Description":"tortilla chips covered in melted cheese, topped with sour cream, beef, and guacomole"
+
+
+                }
+            ]
+        },
+        {
+            "Cold Sandwiches":[
+                {   
+                    "Name": "Turkey and cheese on rye",
+                    "Ingredients":["deli meat (turkey)","american cheese","rye bread"],
+                    "Description":"Turkey deli meat and american cheese between two slices of rye bread"
+                },
+                {
+                    "Name": "Ham and cheese sub",
+                    "Ingredients":["Ham", "american cheese","hogie roll"],
+                    "Description":"ham and american cheese on a hogie roll"    
+                }
+            ]
+        },
+        {
+            "Hot Sandwiches":[
+                {
+                    "Name": "philly cheesesteak",
+                    "Ingredients":["shaved beef","provolone cheese","hogie roll"],
+                    "Description":"shaved beef cooked and layered onto a hogie roll topped with melted provolone"
+                },
+                {
+                    "Name": "chipotle chicken panini",
+                    "Ingredients":["chipotle peppers","deli meat chicken","two pieces of bread"],
+                    "Description":"hot grilled chicken topped with chipotle peppers between two slices of bread pressed between a panini press until golden brown"
+                }
+            ]
+        },
+        {
+            "Desserts":[
+                {
+                    "Name": "Ice cream sundae",
+                    "Ingredients":["Vanilla ice cream","chocolate syrup","whipped cream"],
+                    "Description":"Vanilla ice cream topped with chocolate syrup and whipped cream"
+                },
+                {
+                    "Name": "Brownie",
+                    "Ingredients":["brownie mix","chococalate chips"],
+                    "Description":"Warm brownie square with chocolate chips throughout"
+                }
+            ]
+        },
+        {
+            "Drinks":[
+                {
+                    "Name": "Old fashioned",
+                    "Ingredients":["whiskey/bourbon","bitters","muddled fruit","ice","simple syrup"],
+                    "Description":"Whiskey mixed with simple syrup and bitters on the rocks topped with muddled fruit"
+                },
+                {
+                    "Name": "Lemonade",
+                    "Ingredients":["lemon juice","sugar","water","ice"],
+                    "Description":"In a pitcher you mix one part lemon juice to three parts water and 1-2cups of sugar depending, served on ice"
+                }
+            ]
+        }
+    ]
+}
