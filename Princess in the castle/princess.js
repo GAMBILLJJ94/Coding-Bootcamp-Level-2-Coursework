@@ -2,10 +2,19 @@ const readline = require("readline-sync");
 // var playerName = readline.question("Hello player, what would you like your players name to be?")
 // console.log(playerName)
 
+function whichPlayer(){
+    let randoNum = getRandomInt(0,1)
+    if (randoNum === 0){
+        setName = "Mario"
+    } else if (randoNum === 1){
+        setName = "Luigi"
+    }
+}
 
+whichPlayer()
 
 class player {
-    constructor (name, totalCoins, status, hasStar, setName, gotHit, gotPowerup, addCoin,print) {
+    constructor (name, totalCoins, status, hasStar) {
     this.name = name
     this.totalCoins = totalCoins
     this.status = status
@@ -20,27 +29,38 @@ class player {
         }
     }
     gotHit(){
-        if (this.status === "Powered Up"){
+        if (this.hasStar === true){
+            console.log("Your star protected you from the hit! As a consequence you lose your star..")
+            this.hasStar = false
+        }
+        else if (this.status === "Powered Up"){
+            console.log("You got hit and went from powered up to big")
             this.status = "Big"
         }
         else if (this.status === "Big"){
-            this.status === "Small"
-        } else if (this.status === "Small"){
-            this.status === "Dead"
+            console.log("You got hit and went from big to small")
+            this.status = "Small"
+        }
+        else if (this.status === "Small"){
+            console.log("You got hit and died!")
+            this.status = "Dead"
         }
     }
     gotPowerup(){
         if (this.status === "Powered Up"){
-            this.hasStar === true
+            this.hasStar = true
             console.log("OH BOY LOOK WHAT YOU FOUND!?! Congratulations, you got a star! ")
         } else if (this.status === "Big"){
-            this.status === "Powered Up"
+            console.log("You found a powerup and went from big to powered up!")
+            this.status = "Powered Up"
         } else if (this.status === "Small"){
-            this.status === "Big"
+            console.log("You found a powerup and went from small to big!")
+            this.status = "Big"
         }
     }
     addCoin(){
-        this.totalCoins++ 
+        this.totalCoins++
+        console.log("You found a coin!")
     }
     print(){
         if (this.status === "Powered Up"){
@@ -74,7 +94,38 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-let printout = setInterval(() => userOne.print(),1000)
+function randomEvent(){
+    randoNum = Math.floor(Math.random() * (2 - 0 + 1)) + 0
+
+    if(userOne){
+        randoNum = getRandomInt(0,2)
+        if (randoNum === 0){
+            userOne.gotHit()
+            userOne.print()
+        } else if (randoNum === 1){ 
+            userOne.gotPowerup()
+            userOne.print()
+        }else if (randoNum === 2){ 
+            userOne.addCoin()
+            userOne.print()      
+        }
+    }
+    else if (userTwo){
+        randoNum = getRandomInt(0,2)
+        if (randoNum === 0){
+            userTwo.gotHit()
+            userTwo.print()
+        } else if (randoNum === 1){ 
+            userTwo.gotPowerup()
+            userTwo.print()
+        }else if (randoNum === 2){
+            userTwo.addCoin()
+            userTwo.print()      
+        }
+    }
+}
+
+let printout = setInterval(() => randomEvent(),1000)
 
 
 
