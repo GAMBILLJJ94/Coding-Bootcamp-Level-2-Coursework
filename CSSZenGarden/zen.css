@@ -477,8 +477,91 @@ right:0; */
     grid-row: 44/-1;
     grid-column: 1/-1;
     background-color: #134347;
+    display: grid;
+    grid-template-columns: repeat(106, 20px);
+    grid-template-rows: repeat(10, 20px);
+}
+#html5 {
+    grid-row: 4/8;
+    grid-column: 11/15;
+    padding-top: 14px ;
+    padding-left: 20px;
+    font-size: 46px;
+    color:grey;
+    border-style: solid;
+    border-radius: 40px;
+
+}
+#html5:hover {
+    background-color: grey;
+    color: #134347;
+    transition-duration: .2s;
 }
 
+#html6 {
+    grid-row: 4/8;
+    grid-column: 19/23;
+    padding-top: 17px ;
+    padding-left: 18.6px;
+    font-size: 40px;
+    color:grey;
+    border-style: solid;
+    border-radius: 40px;
+
+}
+#html6:hover {
+    background-color: grey;
+    color: #134347;
+    transition-duration: .2s;
+}
+#html7 {
+    grid-row: 4/8;
+    grid-column: 27/31;
+    padding-top: 13px ;
+    padding-left: 15.5px;
+    font-size: 46px;
+    color:grey;
+    border-style: solid;
+    border-radius: 40px;
+
+}
+#html7:hover {
+    background-color: grey;
+    color: #134347;
+    transition-duration: .2s;
+}
+#html8 {
+    grid-row: 4/8;
+    grid-column: 35/39;
+    padding-top: 15px ;
+    padding-left: 18.5px;
+    font-size: 40px;
+    color:grey;
+    border-style: solid;
+    border-radius: 40px;
+
+}
+#html8:hover {
+    background-color: grey;
+    color: #134347;
+    transition-duration: .2s;
+}
+#html9 {
+    grid-row: 4/8;
+    grid-column: 43/47;
+    padding-top: 14px ;
+    padding-left: 13px;
+    font-size: 40px;
+    color:grey;
+    border-style: solid;
+    border-radius: 40px;
+
+}
+#html9:hover {
+    background-color: grey;
+    color: #134347;
+    transition-duration: .2s;
+}
 
 
 /* @media (max-width: 900px){
