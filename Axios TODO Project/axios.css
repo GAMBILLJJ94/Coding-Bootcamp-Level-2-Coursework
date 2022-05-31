@@ -1,11 +1,12 @@
 body {
-    background-color: aquamarine;
+    background-color: rgb(71, 122, 233);
 }
 #header{
     text-align: center;
     font-size: 50px;
     font-style: italic;
     transform: scale(3, 2);
+    
 }
 
 #todoForm {
@@ -15,7 +16,7 @@ body {
 
 input {
     border-radius: 30px;
-    background-color: rgb(255, 208, 208);
+    background-color: rgb(255, 241, 241);
 }
 
 #submitBtn {

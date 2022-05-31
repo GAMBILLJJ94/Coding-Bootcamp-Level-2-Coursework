@@ -1,43 +1,20 @@
 const todoForm = document["todo-form"]
 
-
-
-
 function getData(){
     axios.get('https://api.vschool.io/joey/todo')
-        .then(assignResponseToVariable)
+        .then(response => listData(response.data))
         .catch(error => error)
-}
-// addBtn(todoListItems)
-function assignResponseToVariable(response){
-    let todoListItems = response.data
-    listData(response.data)
-    
-
-    for (let i = 0; i < todoListItems.length; i++){
-        // console.log(todoListItems[i]._id)
-        var listItems = todoListItems[i]
-        
-
-        
-    }
 }
 
 getData()
 
-// function addBtn (listItem){
-//     listItem.append(editBtn)
-//     listItem.append(delBtn)
-// }
-
-//Actually appending the API information to the DOM and adding buttons
+//Actually appending the API information to the DOM and adding buttons that delete and linethrough
 function listData(arr){
     clearList()
 
-    
-
     for(let i = 0; i < arr.length; i++){
         const h1 = document.createElement('h1')
+        // let h1Text = h1.textContent
         h1.textContent = arr[i].title
         document.getElementById("todoList").appendChild(h1)
         const delBtn = document.createElement("button")
@@ -45,102 +22,54 @@ function listData(arr){
         h1.appendChild(delBtn)
         delBtn.addEventListener('click', ()=>{
             axios.delete("https://api.vschool.io/joey/todo/" + arr[i]._id)
+                .then(getData)
         })
-        getData()
         const doneBtn = document.createElement("button")
-        doneBtn.textContent = "Done!"
+        doneBtn.textContent = "Done"
         h1.appendChild(doneBtn)
+
+        // updates for linethrough/done button
         const updates = {
             completed: true
         }
-
-        //Currently working on todo list strikethrough
+        const otherUpdates = {
+            completed: false
+        }
 
         doneBtn.addEventListener('click', () => {
-            if(arr[i].completed === true){
-                axios.put("https://api.vschool.io/joey/todo/" + arr[i]._id, updates)
-                .then(response => (response.data))
-                .catch(err => alert("There was an issue crossing off your To-Do"))
-            } else if (arr[i].completed === false){
-            axios.put("https://api.vschool.io/joey/todo/" + arr[i]._id, updates)
-                .then(response => alert(arr[i].completed))
-                .catch(err => alert("There was an issue crossing off your To-Do"))
-            }
+                if (arr[i].completed === false){
+                    axios.put("https://api.vschool.io/joey/todo/" + arr[i]._id, updates)
+                        .then(getData)
+                        .catch(err => console.log(err))
+                        
+                } else if (arr[i].completed === true){
+                    axios.put("https://api.vschool.io/joey/todo/" + arr[i]._id, otherUpdates)
+                        .then(getData)
+                        .catch(err => console.log(err))
+                }
         })
         if (arr[i].completed === true){
-            strike(arr[i].title)
+        h1.style.textDecoration = 'line-through';
         }
-        
 
-        // const editBtn = document.createElement("button")
-        // editBtn.textContent = "Edit To-Do"
-        // h1.appendChild(editBtn)
-        // const newInput = document.createElement("input")
-        // editBtn.addEventListener('click', () => {
-
-        // })
-        // const updates = {
-        //     title: `${arr[i].title}`
-        // }
-        // doneBtn.addEventListener('click', () => {
-        //     axios.put("https://api.vschool.io/joey/todo/" + arr[i]._id, )
-        //         .then(response => response.data)
-        //         .catch(err => alert("There was an issue updating your To-Do"))
-
-        // })
-
-        
-
-        const h2 = document.createElement('h2')
-        h2.textContent = arr[i]._id
-        document.getElementById("todoList").appendChild(h2)
+        // const h2 = document.createElement('h2')
+        // h2.textContent = arr[i]._id
+        // document.getElementById("todoList").appendChild(h2)
 
         const descriptionh2 = document.createElement('h2')
         descriptionh2.textContent = arr[i].description
         document.getElementById("todoList").appendChild(descriptionh2)
 
-        const imgh2 = document.createElement('h2')
-        imgh2.textContent = arr[i].imgUrl
-        document.getElementById("todoList").appendChild(imgh2)
+        const img = document.createElement('img')
+        img.textContent = arr[i].imgUrl
+        document.getElementById("todoList").appendChild(img)
+        
 
         const priceh2 = document.createElement('h2')
         priceh2.textContent = arr[i].price
         document.getElementById("todoList").appendChild(priceh2)
- 
+    }
 }
-}
-
-
-// const deleteBtn = document.createElement('button');
-// deleteBtn.addEventListener('click', function(arr[i]._id){
-// });
-
-
-//editing function
-function editTodo (){
-
-}
-
-const deleteTodo = function (){
-    axios.get('https://api.vschool.io/joey/todo')
-        .then(function(response) {
-            var theTodoList = response.data
-            console.log(theTodoList._id)
-        })
-        // .then(response => response.data)
-        .catch(error => error)
-
-
-    axios.delete("https://api.vschool.io/joey/todo/" + todoList._id)
-        .then(response => alert("You have deleted your To-Do"))
-        .then(response => getData())
-        .catch(err => alert("there was an issue"))
-
-}
-//deleting function
-
-// delBtn.addEventListener("click", deleteTodo)
-
 
 //Clearing function
 function clearList (){
@@ -149,9 +78,6 @@ function clearList (){
         el.removeChild(el.firstChild)
     }
 }
-
-
-
 
 //Post submit to DOM
 todoForm.addEventListener("submit", function(e){
@@ -170,11 +96,66 @@ todoForm.addEventListener("submit", function(e){
     todoForm.imgUrl.value=""
 
     axios.post("https://api.vschool.io/joey/todo", newTodo)
-        .then(response => getData())
+        .then(getData)
         .catch(error => console.log(error))
-
 })
 
+
+// const deleteTodo = function (){
+//     axios.get('https://api.vschool.io/joey/todo')
+//         .then(function(response) {
+//             var theTodoList = response.data
+//             console.log(theTodoList._id)
+//         })
+//         // .then(response => response.data)
+//         .catch(error => error)
+
+
+//     axios.delete("https://api.vschool.io/joey/todo/" + todoList._id)
+//         .then(response => alert("You have deleted your To-Do"))
+//         .then(response => getData())
+//         .catch(err => alert("there was an issue"))
+
+// }
+
+//deleting function
+
+// delBtn.addEventListener("click", deleteTodo)
+
+
+        // doneBtn.addEventListener('click', () => {
+        //     if(arr[i].completed === true){
+        //         axios.put("https://api.vschool.io/joey/todo/" + arr[i]._id, updates)
+        //         .then(response => (response.data))
+        //         .catch(err => alert("There was an issue crossing off your To-Do"))
+        //     } else if (arr[i].completed === false){
+        //         completed = true
+        //     axios.put("https://api.vschool.io/joey/todo/" + arr[i]._id, updates)
+        //         .then(response => alert(arr[i].completed))
+        //         .catch(err => alert("There was an issue crossing off your To-Do"))
+        //     }
+        // })
+        // if (arr[i].completed === true){
+        //     strike(arr[i].title)
+        // }
+        
+
+        // const editBtn = document.createElement("button")
+        // editBtn.textContent = "Edit To-Do"
+        // h1.appendChild(editBtn)
+        // const newInput = document.createElement("input")
+        // editBtn.addEventListener('click', () => {
+
+        // })
+        // const updates = {
+        //     title: `${arr[i].title}`
+        // }
+        // doneBtn.addEventListener('click', () => {
+        //     axios.put("https://api.vschool.io/joey/todo/" + arr[i]._id, )
+        //         .then(response => response.data)
+        //         .catch(err => alert("There was an issue updating your To-Do"))
+
+        // })
 
 
 
@@ -204,6 +185,10 @@ todoForm.addEventListener("submit", function(e){
 // const updates = {
 //     name: "dan"
 // }
+
+// const updates = {
+        //     completed: true
+        // }
 
 
 // const result = Object.assign(person, updates)
