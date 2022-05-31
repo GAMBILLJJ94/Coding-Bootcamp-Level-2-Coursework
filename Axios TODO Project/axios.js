@@ -48,9 +48,7 @@ function listData(arr){
                         .catch(err => console.log(err))
                 }
         })
-        if (arr[i].completed === true){
-        h1.style.textDecoration = 'line-through';
-        }
+        
 
         // const h2 = document.createElement('h2')
         // h2.textContent = arr[i]._id
@@ -61,13 +59,21 @@ function listData(arr){
         document.getElementById("todoList").appendChild(descriptionh2)
 
         const img = document.createElement('img')
-        img.textContent = arr[i].imgUrl
+        img.src = arr[i].imgUrl
+        img.style.width = '90px'
+        img.style.height = '90px'
         document.getElementById("todoList").appendChild(img)
         
 
         const priceh2 = document.createElement('h2')
         priceh2.textContent = arr[i].price
         document.getElementById("todoList").appendChild(priceh2)
+        
+        if (arr[i].completed === true){
+        h1.style.textDecoration = 'line-through';
+        descriptionh2.style.textDecoration = 'line-through';
+        priceh2.style.textDecoration = 'line-through';
+        }
     }
 }
 
@@ -99,6 +105,7 @@ todoForm.addEventListener("submit", function(e){
         .then(getData)
         .catch(error => console.log(error))
 })
+
 
 
 // const deleteTodo = function (){
